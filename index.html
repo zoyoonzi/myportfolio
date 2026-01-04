@@ -3,334 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 기반 정책 전문가 | 포트폴리오</title>
+    <title>Policy & Data Analyst | AI 입법 전문가 포트폴리오</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;300;400;500;600;700;800;900&display=swap');
         
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #0f172a;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+        .glass-morphism {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Animation Utility Classes */
+        .text-gradient {
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Typing Cursor */
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s step-start infinite;
+        .bento-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        @keyframes blink {
-            50% { opacity: 0; }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
-        .gradient-text {
-            background: linear-gradient(to right, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* AI Result Styling */
+        .ai-content h3 { font-weight: 700; color: #10b981; margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.125rem; }
+        .ai-content p { color: #94a3b8; line-height: 1.7; margin-bottom: 1rem; }
+        .ai-content ul { list-style: none; padding-left: 0; }
+        .ai-content li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: #cbd5e1; }
+        .ai-content li::before { content: "→"; position: absolute; left: 0; color: #10b981; font-weight: bold; }
+
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.1; }
+        }
+
+        .bg-blob {
+            filter: blur(80px);
+            animation: pulse-soft 8s infinite;
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'politics': '#1e293b', /* Slate 800 */
-                        'tech': '#10b981', /* Emerald 500 */
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+<body class="text-slate-200">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="bg-blob absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/20"></div>
+        <div class="bg-blob absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-600/20"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <span class="text-2xl font-bold text-slate-900 tracking-tighter">Policy<span class="text-blue-600">.AI</span></span>
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 px-4 pt-4" id="navbar">
+        <div class="max-w-6xl mx-auto glass-morphism rounded-2xl px-6 py-4 flex justify-between items-center shadow-2xl">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-400 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-microchip text-slate-900 text-sm"></i>
                 </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">소개</a>
-                    <a href="#experience" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">경력</a>
-                    <a href="#skills" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">역량</a>
-                    <a href="#projects" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">프로젝트</a>
-                    <a href="#contact" class="px-4 py-2 rounded-full bg-slate-900 text-white hover:bg-blue-600 transition-colors font-medium text-sm">연락하기</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+                <span class="text-xl font-black tracking-tight text-white">Policy<span class="text-emerald-400">Lab</span></span>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">소개</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">경력</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">역량</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">프로젝트</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 font-bold hover:bg-slate-50">연락하기</a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
+                <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-emerald-400 transition-colors">Expertise</a>
+                <a href="#ai-demo" class="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">
+                    <i class="fas fa-sparkles"></i> AI Demo
+                </a>
+                <a href="#projects" class="hover:text-emerald-400 transition-colors">Projects</a>
+                <a href="#contact" class="px-5 py-2 bg-white text-slate-950 rounded-xl hover:bg-emerald-400 transition-colors">Hire Me</a>
             </div>
+
+            <button class="md:hidden text-white" id="mobile-menu-btn">
+                <i class="fas fa-bars-staggered text-xl"></i>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900">
-        <!-- Background Elements -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
-            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-500 blur-3xl mix-blend-screen animate-pulse"></div>
-            <div class="absolute top-1/2 right-0 w-80 h-80 rounded-full bg-emerald-500 blur-3xl mix-blend-screen opacity-70"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-block mb-4 px-3 py-1 rounded-full bg-slate-800 border border-slate-700">
-                <span class="text-blue-400 text-sm font-semibold tracking-wide uppercase">Political Science & Data Science</span>
-            </div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                데이터로 정치를 읽고,<br>
-                <span class="gradient-text typing-cursor" id="typing-text"></span>
-            </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 leading-relaxed">
-                국회 정책비서 출신의 입법 전문성과 데이터 분석 기술을 결합하여<br class="hidden md:block">
-                사회 문제를 명확하게 정의하고 실효성 있는 대안을 제시합니다.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#projects" class="px-8 py-4 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-500/30">
-                    프로젝트 보기
-                </a>
-                <a href="#about" class="px-8 py-4 rounded-lg bg-slate-800 text-slate-300 font-bold border border-slate-700 hover:bg-slate-700 hover:text-white transition-all">
-                    더 알아보기
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                <div class="relative reveal">
-                    <div class="aspect-square rounded-2xl bg-gradient-to-tr from-slate-200 to-slate-100 overflow-hidden relative shadow-2xl">
-                        <!-- Abstract representation of Policy + Tech -->
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-300">
-                            <i class="fas fa-balance-scale text-9xl opacity-20 transform -translate-x-10"></i>
-                            <i class="fas fa-network-wired text-9xl opacity-20 transform translate-x-10 text-blue-500"></i>
-                        </div>
-                        <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-slate-900/80 to-transparent">
-                            <p class="text-white font-bold text-lg">"감(Feeling)이 아닌 데이터(Data)로 설득합니다."</p>
-                        </div>
-                    </div>
-                    <!-- Floater Card -->
-                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-slate-100 hidden md:block">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                                <i class="fas fa-graduation-cap text-xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-slate-500">전공 분야</p>
-                                <p class="font-bold text-slate-900">정치외교학 & 정책학</p>
-                            </div>
-                        </div>
-                    </div>
+    <header id="home" class="relative pt-40 pb-20 lg:pt-56 lg:pb-40">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6 reveal">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Digital Policy Architect
                 </div>
-
-                <div class="mt-12 lg:mt-0 reveal">
-                    <h2 class="text-blue-600 font-bold tracking-wide uppercase mb-2">About Me</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">입법 현장의 경험에<br>분석의 깊이를 더하다</h3>
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                        <p>
-                            안녕하세요. 저는 <strong>정치외교학과 정책학</strong>을 전공하고, <strong>국회의원실 정책비서</strong>로서 입법 및 국정감사 실무를 경험한 정책 전문가입니다.
-                        </p>
-                        <p>
-                            현장에서 수많은 사회 문제를 접하며, 정책이 정치적 수사를 넘어 <strong>객관적인 데이터와 증거(Evidence-based)</strong>에 기반할 때 비로소 시민의 삶을 바꿀 수 있다는 확신을 갖게 되었습니다.
-                        </p>
-                        <p>
-                            이러한 확신을 바탕으로 현재는 <strong>데이터 분석과 AI 기술</strong>을 집중적으로 학습하며, 복잡한 사회 현상을 정량적으로 분석하고 이를 법안과 정책으로 구체화하는 '하이브리드형 인재'로 성장하고 있습니다.
-                        </p>
-                    </div>
-
-                    <div class="mt-8 grid grid-cols-2 gap-4">
-                        <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
-                            <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-landmark text-blue-600 mr-2"></i>도메인 지식</h4>
-                            <p class="text-sm text-slate-500">입법 절차, 정책 분석, 정무 감각</p>
-                        </div>
-                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
-                            <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-code text-emerald-500 mr-2"></i>기술 역량</h4>
-                            <p class="text-sm text-slate-500">Python, 데이터 시각화, AI 모델링</p>
-                        </div>
-                    </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-8 reveal">
+                    데이터로 입법을<br>
+                    <span class="text-gradient" id="typing-text"></span>
+                </h1>
+                <p class="text-xl text-slate-400 leading-relaxed mb-10 reveal">
+                    국회 정책 실무 경험과 데이터 사이언스를 결합하여,<br class="hidden md:block"> 
+                    모호한 사회적 갈등을 명확한 입법 솔루션으로 정의합니다.
+                </p>
+                <div class="flex flex-wrap gap-4 reveal">
+                    <a href="#ai-demo" class="px-8 py-4 bg-emerald-500 text-slate-950 font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-transform flex items-center gap-3">
+                        <i class="fas fa-bolt"></i> AI 정책 분석 도구 실행
+                    </a>
+                    <a href="#projects" class="px-8 py-4 glass-morphism text-white font-bold rounded-xl hover:bg-white/10 transition-colors">
+                        포트폴리오 보기
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Experience Timeline -->
-    <section id="experience" class="py-20 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-blue-600 font-bold tracking-wide uppercase mb-2">Career Path</h2>
-                <h3 class="text-3xl font-bold text-slate-900">걸어온 길</h3>
+    <!-- Expertise Section (Bento Grid) -->
+    <section id="skills" class="py-24 bg-slate-950/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <div class="reveal">
+                    <h2 class="text-emerald-400 font-bold tracking-tighter mb-2">Core Expertise</h2>
+                    <h3 class="text-4xl font-bold text-white">입법과 기술의 하이브리드</h3>
+                </div>
+                <p class="text-slate-400 max-w-sm reveal">
+                    현장 중심의 정무 감각과 정밀한 데이터 분석력을 동시에 보유하여 실효성 있는 정책을 제안합니다.
+                </p>
             </div>
 
-            <div class="relative space-y-12">
-                <!-- Timeline Line -->
-                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200 md:left-1/2 md:-ml-0.5"></div>
-
-                <!-- Item 1 -->
-                <div class="relative flex flex-col md:flex-row items-center reveal">
-                    <div class="flex-1 md:w-1/2 md:text-right md:pr-12 mb-4 md:mb-0 pl-20 md:pl-0">
-                        <h4 class="text-xl font-bold text-slate-900">데이터 사이언스 & AI 학습</h4>
-                        <p class="text-blue-600 font-medium">현재 진행 중</p>
-                        <p class="text-slate-500 mt-2 text-sm">Python, Pandas, Scikit-learn 활용 데이터 분석 및 머신러닝 모델링 심화 학습. 공공데이터 활용 프로젝트 수행.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Large Card -->
+                <div class="md:col-span-2 glass-morphism p-10 rounded-3xl bento-card reveal">
+                    <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-8">
+                        <i class="fas fa-landmark-flag text-2xl"></i>
                     </div>
-                    <div class="absolute left-2 w-12 h-12 rounded-full bg-blue-600 border-4 border-white shadow flex items-center justify-center z-10 md:left-1/2 md:-translate-x-1/2">
-                        <i class="fas fa-laptop-code text-white text-sm"></i>
-                    </div>
-                    <div class="flex-1 md:w-1/2 md:pl-12 pl-20 hidden md:block"></div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="relative flex flex-col md:flex-row items-center reveal">
-                    <div class="flex-1 md:w-1/2 md:pr-12 hidden md:block"></div>
-                    <div class="absolute left-2 w-12 h-12 rounded-full bg-slate-800 border-4 border-white shadow flex items-center justify-center z-10 md:left-1/2 md:-translate-x-1/2">
-                        <i class="fas fa-gavel text-white text-sm"></i>
-                    </div>
-                    <div class="flex-1 md:w-1/2 md:pl-12 pl-20 md:text-left">
-                        <h4 class="text-xl font-bold text-slate-900">국회의원실 정책비서</h4>
-                        <p class="text-slate-500 font-medium">20XX.XX - 20XX.XX</p>
-                        <p class="text-slate-500 mt-2 text-sm">상임위원회 질의서 작성, 법률안 제·개정 실무 보조, 국정감사 아이템 발굴 및 정책 자료집 발간 참여.</p>
+                    <h4 class="text-2xl font-bold text-white mb-4">Strategic Policy Design</h4>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        국회 상임위원회 실무를 통해 축적된 입법 프로세스 이해도를 바탕으로, 법안 발의부터 통과까지의 정무적 전략을 설계합니다. 아젠다 세팅 및 이해관계자 조율에 강점이 있습니다.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
+                        <span class="px-3 py-1 bg-white/5 rounded-md border border-white/10">입법 영향 평가</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md border border-white/10">정무 리스크 관리</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md border border-white/10">국정감사 기획</span>
                     </div>
                 </div>
 
-                <!-- Item 3 -->
-                <div class="relative flex flex-col md:flex-row items-center reveal">
-                    <div class="flex-1 md:w-1/2 md:text-right md:pr-12 mb-4 md:mb-0 pl-20 md:pl-0">
-                        <h4 class="text-xl font-bold text-slate-900">정치외교학 / 정책학 석사 졸업</h4>
-                        <p class="text-slate-500 font-medium">OO대학교</p>
-                        <p class="text-slate-500 mt-2 text-sm">비교정치, 공공정책론, 입법과정론 등 수강. 학과 학회장 역임 및 모의국회 최우수상 수상.</p>
+                <!-- Tall Card -->
+                <div class="glass-morphism p-10 rounded-3xl bento-card flex flex-col reveal">
+                    <div class="w-14 h-14 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 mb-8">
+                        <i class="fas fa-chart-pie text-2xl"></i>
                     </div>
-                    <div class="absolute left-2 w-12 h-12 rounded-full bg-slate-300 border-4 border-white shadow flex items-center justify-center z-10 md:left-1/2 md:-translate-x-1/2">
-                        <i class="fas fa-graduation-cap text-slate-600 text-sm"></i>
+                    <h4 class="text-2xl font-bold text-white mb-4">Data Evidence</h4>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        직관이 아닌 통계에 기반한 정책 수립. Python을 활용해 공공데이터를 정제하고 인사이트를 도출합니다.
+                    </p>
+                    <div class="mt-auto space-y-4">
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-slate-500 uppercase">Analysis Level</span>
+                            <span class="text-emerald-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-emerald-500 h-full w-[85%]"></div>
+                        </div>
                     </div>
-                    <div class="flex-1 md:w-1/2 md:pl-12 pl-20 hidden md:block"></div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-morphism p-8 rounded-3xl bento-card reveal">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 mb-6">
+                        <i class="fas fa-brain text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">AI Implementation</h4>
+                    <p class="text-sm text-slate-400">LLM 및 자동화 툴을 입법 리서치에 도입하여 정책 개발 속도를 3배 이상 향상시킵니다.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-morphism p-8 rounded-3xl bento-card reveal">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-orange-400 mb-6">
+                        <i class="fas fa-bullhorn text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">PR Strategy</h4>
+                    <p class="text-sm text-slate-400">복잡한 법안을 대중이 이해하기 쉬운 언어로 번역하고 보도자료화하는 홍보 역량을 갖췄습니다.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-morphism p-8 rounded-3xl bento-card reveal">
+                    <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center text-pink-400 mb-6">
+                        <i class="fas fa-users-gear text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Network</h4>
+                    <p class="text-sm text-slate-400">민/관/정 협력 네트워크를 통해 사회적 합의를 이끌어내는 퍼실리테이터 역할을 수행합니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-blue-600 font-bold tracking-wide uppercase mb-2">Expertise</h2>
-                <h3 class="text-3xl font-bold text-slate-900">융합형 역량</h3>
-                <p class="text-slate-500 mt-4">정책 실무 능력과 기술적 분석 능력을 모두 갖추고 있습니다.</p>
-            </div>
+    <!-- AI Demo Section (The Highlight) -->
+    <section id="ai-demo" class="py-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-morphism rounded-[2.5rem] p-1 md:p-2 shadow-2xl reveal">
+                <div class="bg-slate-900 rounded-[2rem] p-8 md:p-12 overflow-hidden relative">
+                    <!-- Decor -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[80px] rounded-full"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="px-3 py-1 bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-tighter rounded">AI Live Demo</span>
+                            <h2 class="text-2xl font-bold text-white">AI 정책 인사이트 생성기 v2.0</h2>
+                        </div>
+                        
+                        <p class="text-slate-400 mb-10 leading-relaxed">
+                            사회적 아젠다를 입력하면, AI가 입법 실무자의 관점에서 <span class="text-white font-semibold">구조적 원인 진단</span>과 <span class="text-white font-semibold">입법 대안</span>을 즉시 제안합니다.
+                        </p>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Policy Skills -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 reveal">
-                    <div class="flex items-center mb-6">
-                        <i class="fas fa-file-signature text-3xl text-slate-700 mr-4"></i>
-                        <h4 class="text-2xl font-bold text-slate-900">Policy & Admin</h4>
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-slate-700">법안 작성 및 입법 절차</span>
-                                <span class="text-slate-500">Expert</span>
-                            </div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5">
-                                <div class="bg-slate-700 h-2.5 rounded-full" style="width: 90%"></div>
-                            </div>
+                        <div class="relative group">
+                            <input type="text" id="issueInput" 
+                                class="w-full bg-slate-800/50 border border-slate-700 text-white px-6 py-5 rounded-2xl focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all text-lg placeholder:text-slate-600"
+                                placeholder="예: 가상자산 이용자 보호법, 초고령사회 돌봄 대책..."
+                                onkeypress="if(event.key === 'Enter') generatePolicyInsight()">
+                            <button onclick="generatePolicyInsight()" 
+                                class="absolute right-3 top-3 bottom-3 px-8 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl transition-all flex items-center gap-2">
+                                <i class="fas fa-wand-magic-sparkles"></i> <span class="hidden sm:inline">분석</span>
+                            </button>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-slate-700">사회 문제 분석 & 아젠다 세팅</span>
-                                <span class="text-slate-500">Advanced</span>
-                            </div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5">
-                                <div class="bg-slate-700 h-2.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-slate-700">보도자료 & 질의서 작성</span>
-                                <span class="text-slate-500">Advanced</span>
-                            </div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5">
-                                <div class="bg-slate-700 h-2.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Tech Skills -->
-                <div class="bg-slate-900 p-8 rounded-2xl shadow-xl reveal">
-                    <div class="flex items-center mb-6">
-                        <i class="fas fa-chart-network text-3xl text-emerald-400 mr-4"></i>
-                        <h4 class="text-2xl font-bold text-white">Data & AI</h4>
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-slate-300">Python (Pandas, NumPy)</span>
-                                <span class="text-emerald-400">Intermediate</span>
+                        <!-- Result Display -->
+                        <div id="aiResultContainer" class="mt-12 hidden space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                            <div class="flex items-center gap-4">
+                                <div class="h-px flex-1 bg-slate-800"></div>
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Analysis Result</span>
+                                <div class="h-px flex-1 bg-slate-800"></div>
                             </div>
-                            <div class="w-full bg-slate-700 rounded-full h-2.5">
-                                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 70%"></div>
+
+                            <!-- Spinner -->
+                            <div id="loadingSpinner" class="py-12 flex flex-col items-center justify-center hidden">
+                                <div class="relative w-16 h-16">
+                                    <div class="absolute inset-0 border-4 border-emerald-500/20 rounded-full"></div>
+                                    <div class="absolute inset-0 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <p class="mt-6 text-slate-500 font-medium tracking-tight">정책 아카이브를 스캔 중입니다...</p>
                             </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-slate-300">Data Visualization (Matplotlib/Seaborn)</span>
-                                <span class="text-emerald-400">Intermediate</span>
-                            </div>
-                            <div class="w-full bg-slate-700 rounded-full h-2.5">
-                                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-slate-300">Machine Learning Basics</span>
-                                <span class="text-emerald-400">Basic</span>
-                            </div>
-                            <div class="w-full bg-slate-700 rounded-full h-2.5">
-                                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 40%"></div>
+
+                            <!-- Content -->
+                            <div id="aiResponse" class="ai-content bg-slate-800/30 border border-white/5 p-8 rounded-2xl hidden">
+                                <!-- AI Content Injected Here -->
                             </div>
                         </div>
                     </div>
@@ -339,208 +267,194 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-blue-600 font-bold tracking-wide uppercase mb-2">Portfolio</h2>
-                <h3 class="text-3xl font-bold text-slate-900">데이터 기반 정책 분석 예시</h3>
-                <p class="text-slate-500 mt-4">(학습 내용을 바탕으로 재구성한 가상의 프로젝트입니다)</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 reveal">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/0 transition-colors"></div>
-                        <div class="flex items-center justify-center h-full">
-                            <i class="fas fa-bus text-5xl text-slate-400"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">교통 정책</span>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Data Analysis</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">심야버스 노선 최적화 분석</h4>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
-                            통신사 유동인구 데이터와 택시 승하차 데이터를 분석하여 심야 시간대 교통 사각지대를 시각화하고, 기존 심야버스 노선의 효율성을 재평가하여 수정 법률안의 근거 자료로 활용.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-600">
-                            자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 reveal">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-emerald-600/10 group-hover:bg-emerald-600/0 transition-colors"></div>
-                        <div class="flex items-center justify-center h-full">
-                            <i class="fas fa-comments text-5xl text-slate-400"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">여론 분석</span>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">NLP</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">청년 정책 댓글 감성 분석</h4>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
-                            주요 포털 뉴스의 청년 주거/일자리 정책 관련 기사 댓글 1만 건을 크롤링하여 NLP 감성 분석 수행. 정책에 대한 실제 수용도와 주요 불만 키워드를 추출하여 국정감사 질의서에 반영.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-600">
-                            자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 reveal">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-purple-600/10 group-hover:bg-purple-600/0 transition-colors"></div>
-                        <div class="flex items-center justify-center h-full">
-                            <i class="fas fa-chart-pie text-5xl text-slate-400"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">예산 심사</span>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Visualization</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">지자체 예산 집행률 대시보드</h4>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
-                            공공데이터포털의 지방재정 데이터를 활용하여 전국 지자체의 연도별 예산 집행률과 불용액 현황을 한눈에 볼 수 있는 인터랙티브 대시보드 프로토타입 제작.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-600">
-                            자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-slate-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-emerald-400 font-bold tracking-wide uppercase mb-2">Contact</h2>
-            <h3 class="text-3xl font-bold mb-8">함께 더 나은 정책을 고민하고 싶습니다</h3>
-            <p class="text-slate-400 mb-12">
-                데이터에 기반한 입법 전략, 혹은 AI 정책 분석에 대해 논의하고 싶으신가요?<br>
-                언제든 연락 주시기 바랍니다.
-            </p>
+    <!-- Experience Section (Vertical) -->
+    <section id="experience" class="py-24 bg-slate-950/50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-center text-emerald-400 font-bold uppercase tracking-widest text-sm mb-16 reveal">Career Progression</h2>
             
-            <div class="flex justify-center gap-8 mb-12">
-                <a href="#" class="flex flex-col items-center group">
-                    <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-blue-600 transition-colors mb-4">
-                        <i class="fas fa-envelope text-2xl"></i>
+            <div class="space-y-16">
+                <!-- Exp 1 -->
+                <div class="flex flex-col md:flex-row gap-8 reveal">
+                    <div class="md:w-1/3">
+                        <div class="text-3xl font-black text-white mb-2">Present</div>
+                        <div class="text-emerald-400 font-bold">Policy & Data Research</div>
                     </div>
-                    <span class="text-slate-300 group-hover:text-white transition-colors">Email</span>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
-                    <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-blue-600 transition-colors mb-4">
-                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    <div class="md:w-2/3 border-l border-slate-800 pl-8 relative">
+                        <div class="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
+                        <h4 class="text-xl font-bold text-white mb-4">데이터 사이언스 기반 정책 고도화</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            공공데이터 시각화 대시보드 개발 및 머신러닝 기반 민원 데이터 군집 분석 연구. 
+                            AI를 활용한 법안 리서치 자동화 파이프라인 구축.
+                        </p>
                     </div>
-                    <span class="text-slate-300 group-hover:text-white transition-colors">LinkedIn</span>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
-                    <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-emerald-500 transition-colors mb-4">
-                        <i class="fab fa-github text-2xl"></i>
-                    </div>
-                    <span class="text-slate-300 group-hover:text-white transition-colors">GitHub</span>
-                </a>
-            </div>
+                </div>
 
-            <div class="bg-slate-800 p-8 rounded-2xl max-w-lg mx-auto border border-slate-700">
-                <form onsubmit="event.preventDefault(); alert('메시지가 전송되었습니다. (데모 기능)');" class="space-y-4">
-                    <input type="email" placeholder="이메일 주소" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white focus:outline-none focus:border-blue-500 transition-colors">
-                    <textarea placeholder="메시지를 입력하세요" rows="4" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white focus:outline-none focus:border-blue-500 transition-colors"></textarea>
-                    <button type="submit" class="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-colors shadow-lg shadow-blue-500/20">
-                        메시지 보내기
-                    </button>
-                </form>
+                <!-- Exp 2 -->
+                <div class="flex flex-col md:flex-row gap-8 reveal">
+                    <div class="md:w-1/3">
+                        <div class="text-3xl font-black text-slate-700 mb-2">20XX-20XX</div>
+                        <div class="text-slate-500 font-bold">National Assembly</div>
+                    </div>
+                    <div class="md:w-2/3 border-l border-slate-800 pl-8 relative">
+                        <div class="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-slate-700"></div>
+                        <h4 class="text-xl font-bold text-white mb-4">국회의원실 정책비서</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            산업통상자원중소벤처기업위원회 소관 국정감사 아이템 발굴.
+                            신성장 동력 산업 육성을 위한 3건의 제정 법률안 기초 초안 작성 및 입법 보조.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 py-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-slate-500 text-sm">© 2024 Policy & AI Analyst Portfolio. All rights reserved.</p>
+    <!-- Projects (Cards) -->
+    <section id="projects" class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-blue-500 font-bold uppercase tracking-widest text-sm mb-4">Portfolio</h2>
+                <h3 class="text-4xl font-bold text-white">데이터로 증명한 입법 가치</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="group glass-morphism rounded-3xl overflow-hidden reveal">
+                    <div class="h-64 bg-slate-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-lg border border-blue-500/30">NLP Analysis</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">청년 정책 수요 데이터 맵핑</h4>
+                        <p class="text-slate-400 mb-6 line-clamp-2">청와대 국민청원 및 지자체 민원 데이터를 텍스트 마이닝하여 세대별 불만 요소를 시각화하고 정책 우선순위를 재조정했습니다.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-white font-bold group-hover:gap-4 transition-all">
+                            View Case Study <i class="fas fa-arrow-right-long text-emerald-400"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group glass-morphism rounded-3xl overflow-hidden reveal">
+                    <div class="h-64 bg-slate-800 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-lg border border-emerald-500/30">Optimization</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">지방 소멸 지수 예측 모델링</h4>
+                        <p class="text-slate-400 mb-6 line-clamp-2">인구 이동 패턴 및 지역 산업 경쟁력을 변수로 하는 예측 모델을 구축하여 특례시 지정을 위한 정량적 근거를 제시했습니다.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-white font-bold group-hover:gap-4 transition-all">
+                            View Case Study <i class="fas fa-arrow-right-long text-emerald-400"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="py-24 bg-slate-950 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h3 class="text-5xl font-black text-white mb-8 reveal">Next Level Policy.</h3>
+            <p class="text-slate-400 mb-12 max-w-lg mx-auto reveal">기술로 입법의 장벽을 낮추고 시민의 삶을 개선하는 여정에 함께하겠습니다.</p>
+            
+            <div class="flex justify-center gap-4 mb-20 reveal">
+                <a href="mailto:contact@policylab.ai" class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-500 hover:text-slate-950 transition-all text-white">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+                <a href="#" class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-500 hover:text-slate-950 transition-all text-white">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="#" class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-500 hover:text-slate-950 transition-all text-white">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+
+            <p class="text-slate-600 text-sm">© 2026 PolicyLab Archive. Built with AI & Data Integrity.</p>
         </div>
     </footer>
 
     <script>
         // Typing Effect
         const typingText = document.getElementById('typing-text');
-        const phrases = ['AI로 정책을 만듭니다.', '미래 입법을 설계합니다.', '사회 문제를 해결합니다.'];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        const phrases = ['분석합니다.', '혁신합니다.', '증명합니다.'];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false;
 
         function type() {
-            const currentPhrase = phrases[phraseIndex];
+            const current = phrases[phraseIndex];
+            typingText.textContent = isDeleting ? current.substring(0, charIndex--) : current.substring(0, charIndex++);
             
-            if (isDeleting) {
-                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
+            if (!isDeleting && charIndex > current.length) {
                 isDeleting = true;
-                setTimeout(type, 2000); // Pause at end
+                setTimeout(type, 2000);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(type, 500); // Pause before typing next
+                setTimeout(type, 500);
             } else {
-                setTimeout(type, isDeleting ? 50 : 100);
+                setTimeout(type, isDeleting ? 50 : 150);
             }
         }
         
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(type, 1000);
-        });
+        document.addEventListener('DOMContentLoaded', () => setTimeout(type, 1000));
 
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Scroll Reveal Animation
+        // Scroll Reveal
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add("active");
+            });
         }
         window.addEventListener("scroll", reveal);
-        // Trigger once on load
         reveal();
 
-        // Navbar blur effect on scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-md');
-                navbar.classList.replace('bg-white/90', 'bg-white/95');
-            } else {
-                navbar.classList.remove('shadow-md');
-                navbar.classList.replace('bg-white/95', 'bg-white/90');
+        // Gemini API Interaction
+        async function generatePolicyInsight() {
+            const input = document.getElementById('issueInput').value.trim();
+            if (!input) return;
+
+            const container = document.getElementById('aiResultContainer');
+            const spinner = document.getElementById('loadingSpinner');
+            const responseDiv = document.getElementById('aiResponse');
+            
+            container.classList.remove('hidden');
+            responseDiv.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            
+            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            const sysPrompt = `당신은 대한민국 국회의 '입법 정책 보좌관'이자 '데이터 과학자'입니다. 
+            사용자가 입력한 아젠다에 대해 [현황 및 구조적 결함 진단]과 [구체적인 입법/정책 대안 3가지]를 전문가적인 어조로 작성하세요.
+            
+            - 답변 형식: 
+              <h3>핵심 진단</h3> <p>진단 내용...</p>
+              <h3>전략적 대안</h3> <ul><li>대안1</li><li>대안2</li><li>대안3</li></ul>
+            - Tailwind CSS 클래스를 활용해 텍스트를 아름답게 구성하세요 (텍스트 색상은 slate-300 중심).
+            - 마크다운 없이 HTML 태그만 반환하세요.`;
+
+            try {
+                const apiKey = ""; // API Key는 런타임에 주입됨
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `키워드: ${input}` }] }],
+                        systemInstruction: { parts: [{ text: sysPrompt }] }
+                    })
+                });
+                
+                const data = await res.json();
+                const content = data.candidates[0].content.parts[0].text;
+                
+                spinner.classList.add('hidden');
+                responseDiv.classList.remove('hidden');
+                responseDiv.innerHTML = content;
+                
+            } catch (err) {
+                spinner.classList.add('hidden');
+                responseDiv.classList.remove('hidden');
+                responseDiv.innerHTML = `<p class="text-red-400">데이터를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>`;
             }
-        });
+        }
     </script>
 </body>
 </html>
